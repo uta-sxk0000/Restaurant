@@ -1,4 +1,7 @@
 package com.example.queue
+
+import android.content.Intent
+import android.widget.Button
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -29,5 +32,13 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("FirebaseTest", "Error adding document", e)
             }
+
+
+        //link sing up bUtton
+        val signUpButton: Button = findViewById(R.id.buttonSignUp)
+        signUpButton.setOnClickListener {
+            val intent = Intent(this, SingUpActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
