@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
 
-        <activity android:name=".MenuActivity" />
+        <activity
+            android:name=".MenuActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
 
         <activity
             android:name=".MainActivity"
