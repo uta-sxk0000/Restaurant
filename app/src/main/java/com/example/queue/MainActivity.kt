@@ -11,12 +11,14 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()
+{
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -43,14 +45,52 @@ class MainActivity : AppCompatActivity() {
 
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    if (task.isSuccessful)
+                    {
 
-                        // Go to menu screen
-                        val intent = Intent(this, MenuActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
+                        //get the user id from the database
+                        val uid = auth.currentUser?.uid
+
+                        //if the user exist ( is not null)
+                        if (uid != null)
+                        {
+
+                            //get his account type from the database (user/admin)
+                            db.collection("users").document(uid).get()
+                                .addOnSuccessListener { document ->
+                                    if(document.exists())
+                                    {
+                                        val accountType = document.getString("accountType")
+
+                                        //Login succesful
+                                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+
+                                        //redirection to the right menu depending on the account type
+
+                                        //if account type is restuarant redirect to admin menu
+                                        if (accountType == "Restaurant")
+                                        {
+                                            val intent = Intent(this, AdminMenuActivity::class.java)
+                                            startActivity(intent)
+                                        }
+                                        //else redirect to user menu
+                                        else
+                                        {
+                                            val intent = Intent(this, MenuActivity::class.java)
+                                            startActivity(intent)
+                                        }
+                                        finish()
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show()
+                                    }
+
+                        }
+
+                    } //else login failed
+                    else
+                    {
                         Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         Log.e("Login", "Error: ", task.exception)
                     }
@@ -58,9 +98,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Go to Sign Up screen
-        signUpButton.setOnClickListener {
+        signUpButton.setOnClickListener{
             val intent = Intent(this, SingUpActivity::class.java)
             startActivity(intent)
         }
+    }
     }
 }

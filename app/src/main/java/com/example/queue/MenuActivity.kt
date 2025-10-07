@@ -1,15 +1,23 @@
 package com.example.queue
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val textView = TextView(this)
-        textView.text = "Welcome to the Menu Screen!"
-        textView.textSize = 24f
-        setContentView(textView)
+        setContentView(R.layout.activity_menu)
+
+        val btnViewQueue: Button = findViewById(R.id.btnViewQueue)
+        btnViewQueue.setOnClickListener {
+            Toast.makeText(this, "View Queue clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        val btnProfile: Button = findViewById(R.id.btnProfile)
+        btnProfile.setOnClickListener {
+            Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 }
