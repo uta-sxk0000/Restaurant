@@ -1,5 +1,6 @@
 package com.example.queue; // change if your package name is different
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class SingUpActivity extends AppCompatActivity
     private EditText passwordEditText;
     private RadioGroup accountTypeRadioGroup;
     private Button signUpButton;
+    private Button goToReservationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,9 +43,16 @@ public class SingUpActivity extends AppCompatActivity
         passwordEditText = findViewById(R.id.editTextPassword);
         accountTypeRadioGroup = findViewById(R.id.radioGroupAccountType);
         signUpButton = findViewById(R.id.buttonSignUp);
+        goToReservationButton = findViewById(R.id.buttonGoToReservation);
 
         // Sign Up button logic
         signUpButton.setOnClickListener(v -> signUpUser());
+
+        // Go to Reservation button logic
+        goToReservationButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SingUpActivity.this, ReservationActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void signUpUser()
