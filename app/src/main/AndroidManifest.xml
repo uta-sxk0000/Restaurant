@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
         <activity
+            android:name=".CreateRestaurantActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
             android:name=".AdminMenuActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
