@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MenuActivity">
+
+    <!-- Dashboard Title -->
+
+    <!-- GridLayout for Buttons (2 per row) -->
+
+    <TextView
+        android:id="@+id/tvDashboardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:text="@string/user_dashboard"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridLayout
+        android:id="@+id/buttonGrid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:padding="24dp"
+        android:rowCount="3"
+        android:useDefaultMargins="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDashboardTitle">
+
+        <Button
+            android:id="@+id/btnCheckIn"
+            android:layout_width="16dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:contentDescription="@string/check_in"
+            android:text="@string/check_in" />
+
+        <Button
+            android:id="@+id/btnMakeReservation"
+            android:layout_width="16dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:contentDescription="@string/make_reservation"
+            android:text="@string/make_reservation" />
+
+        <Button
+            android:id="@+id/btnViewStatus"
+            android:layout_width="16dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:contentDescription="@string/view_status"
+            android:text="@string/view_status" />
+
+        <Button
+            android:id="@+id/btnViewReservation"
+            android:layout_width="16dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:contentDescription="@string/view_reservation"
+            android:text="@string/view_reservation" />
+
+        <Button
+            android:id="@+id/btnNotifications"
+            android:layout_width="16dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:contentDescription="@string/notifications"
+            android:text="@string/notifications" />
+
+        <Button
+            android:id="@+id/btnUserMenu"
+            android:layout_width="16dp"
+            android:layout_height="80dp"
+            android:layout_columnWeight="1"
+            android:contentDescription="@string/user_menu"
+            android:text="@string/user_menu" />
+
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
