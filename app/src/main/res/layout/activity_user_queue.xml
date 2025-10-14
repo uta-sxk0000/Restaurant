@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userQueueRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Spinner
+        android:id="@+id/spinnerRestaurants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your name"
+        android:inputType="textPersonName"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/etPartySize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Party size"
+        android:inputType="number"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnJoinQueue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Join Queue"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

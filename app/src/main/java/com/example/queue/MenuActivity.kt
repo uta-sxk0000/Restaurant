@@ -1,8 +1,8 @@
 package com.example.queue
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MenuActivity : AppCompatActivity() {
@@ -11,13 +11,20 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
 
         val btnViewQueue: Button = findViewById(R.id.btnViewQueue)
+        val btnProfile: Button = findViewById(R.id.btnProfile)
+
+        // Open UserQueueActivity when "View Queue" is clicked
         btnViewQueue.setOnClickListener {
-            Toast.makeText(this, "View Queue clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, UserQueueActivity::class.java)
+            startActivity(intent)
         }
 
-        val btnProfile: Button = findViewById(R.id.btnProfile)
+        // You can later replace this with a ProfileActivity
         btnProfile.setOnClickListener {
-            Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+            // Example placeholder
+            // val intent = Intent(this, ProfileActivity::class.java)
+            // startActivity(intent)
         }
     }
 }
+
