@@ -6,32 +6,72 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <Spinner
-        android:id="@+id/spinnerRestaurants"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/etName"
+    <LinearLayout
+        android:id="@+id/layoutJoinQueue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Your name"
-        android:inputType="textPersonName"
-        android:layout_marginTop="12dp" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etPartySize"
+        <Spinner
+            android:id="@+id/spinnerRestaurants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your name"
+            android:inputType="textPersonName"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/etPartySize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Party size"
+            android:inputType="number"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnJoinQueue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Join Queue"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutQueueStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Party size"
-        android:inputType="number"
-        android:layout_marginTop="8dp" />
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <Button
-        android:id="@+id/btnJoinQueue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Join Queue"
-        android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/tvQueueName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Welcome, [Name]!"/>
+
+        <TextView
+            android:id="@+id/tvQueuePosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:text="Your position in queue: #[Position]"/>
+
+        <TextView
+            android:id="@+id/tvEstimatedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:text="Estimated wait time: [Time]"/>
+
+    </LinearLayout>
 
 </LinearLayout>
