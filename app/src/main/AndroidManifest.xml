@@ -41,6 +41,10 @@
             android:exported="true"
             android:label="Sign Up"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".admin_queue"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" /><!-- admin queue activity -->
     </application>
 
 </manifest>
