@@ -54,4 +54,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Account"/>
+
+    <Button
+        android:id="@+id/buttonGoToReservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Make a Reservation"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>
