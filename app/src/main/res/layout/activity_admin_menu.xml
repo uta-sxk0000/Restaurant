@@ -1,33 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f7f7">
+    android:fillViewport="true"
+    android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/adminMenuText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin Menu"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:textColor="#000" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <Button
-        android:id="@+id/manageReservationsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manage Reservation" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin Dashboard"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="#263238"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp"/>
 
-    <Button
-        android:id="@+id/btnCreateRestaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Restaurant"
-        android:layout_margin="16dp"/>
+        <!-- ROW 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
+            <Button
+                android:id="@+id/btnReservations"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="RESERVATIONS"/>
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btnQueue"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="QUEUE"/>
+        </LinearLayout>
+
+        <Space android:layout_width="0dp" android:layout_height="16dp"/>
+
+        <!-- ROW 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnWaitTime"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="WAIT TIME"/>
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="SETTINGS"/>
+        </LinearLayout>
+
+        <Space android:layout_width="0dp" android:layout_height="8dp"/>
+
+        <!-- keep existing “Create Restaurant” -->
+        <Button
+            android:id="@+id/btnCreateRestaurant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Restaurant"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>
