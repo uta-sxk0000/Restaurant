@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">queue</string>
+    <string name="title_admin_dashboard">Admin Dashboard</string>
+    <string name="label_reservations">RESERVATIONS</string>
+    <string name="label_queue">QUEUE</string>
+    <string name="label_wait_time">WAIT TIME</string>
+    <string name="label_settings">SETTINGS</string>
+    <string name="label_create_restaurant">Create Restaurant</string>
+
 </resources>

@@ -28,8 +28,11 @@ class AdminMenuActivity : AppCompatActivity() {
             if (!ok) toast("Reservations screen not ready.")
         }
 
-        // Placeholders (UI feels complete; no crashes)
-        btnQueue.setOnClickListener    { toast("Queue coming soon.") }
+
+        btnQueue.setOnClickListener {
+            startActivity(Intent(this, com.example.queue.admin_queue::class.java))
+        }
+// Placeholders so that UI feels complete ad has no crashes
         btnWaitTime.setOnClickListener { toast("Wait time coming soon.") }
         btnSettings.setOnClickListener { toast("Settings coming soon.") }
 

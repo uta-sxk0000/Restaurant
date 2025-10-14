@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Admin Dashboard"
+            android:text="@string/title_admin_dashboard"
             android:textStyle="bold"
             android:textSize="22sp"
             android:textColor="#263238"
@@ -34,7 +34,7 @@
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="RESERVATIONS"/>
+                android:text="@string/label_reservations"/>
 
             <Button
                 android:id="@+id/btnQueue"
@@ -42,7 +42,7 @@
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="QUEUE"/>
+                android:text="@string/label_queue"/>
         </LinearLayout>
 
         <Space android:layout_width="0dp" android:layout_height="16dp"/>
@@ -60,7 +60,7 @@
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="WAIT TIME"/>
+                android:text="@string/label_wait_time"/>
 
             <Button
                 android:id="@+id/btnSettings"
@@ -68,17 +68,16 @@
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="SETTINGS"/>
+                android:text="@string/label_settings"/>
         </LinearLayout>
 
         <Space android:layout_width="0dp" android:layout_height="8dp"/>
 
-        <!-- keep existing “Create Restaurant” -->
         <Button
             android:id="@+id/btnCreateRestaurant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Restaurant"
+            android:text="@string/label_create_restaurant"
             android:layout_marginTop="12dp"/>
     </LinearLayout>
 </ScrollView>
