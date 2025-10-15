@@ -21,8 +21,8 @@ class MenuActivity : AppCompatActivity() {
 
         // ====== Example click listeners ======
         btnCheckIn.setOnClickListener {
-            Toast.makeText(this, "Check In clicked", Toast.LENGTH_SHORT).show()
-            // TODO: Open CheckInActivity
+            val intent = Intent(this, CheckInActivity::class.java)
+            startActivity(intent)
         }
 
         btnMakeReservation.setOnClickListener {

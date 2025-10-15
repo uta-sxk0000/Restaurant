@@ -45,6 +45,10 @@
             android:name=".admin_queue"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" /><!-- admin queue activity -->
+        <activity
+            android:name=".CheckInActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
     </application>
 
 </manifest>
