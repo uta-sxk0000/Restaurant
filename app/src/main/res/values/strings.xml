@@ -9,12 +9,9 @@
     <string name="user_dashboard">User Dashboard</string>
     <string name="check_in">Check In</string>
     <string name="make_reservation">Make Reservation</string>
-    <string name="view_status">View Status</string>
+    <string name="view_status">Join Queue</string>
     <string name="view_reservation">View Reservation</string>
     <string name="notifications">Notifications</string>
-    <string name="user_menu">User Menu</string>
+    <string name="user_menu">Log Out</string>
     <string name="arrived">Arrived</string>
-
-
-
 </resources>
