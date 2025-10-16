@@ -36,6 +36,9 @@ class UserQueueActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_queue)
 
+        // Enable the back arrow in the action bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // Initialize all views
         spinnerRestaurants = findViewById(R.id.spinnerRestaurants)
         etName = findViewById(R.id.etName)
@@ -54,6 +57,12 @@ class UserQueueActivity : AppCompatActivity() {
         btnJoinQueue.setOnClickListener {
             joinQueue()
         }
+    }
+
+    // Handle the back arrow click
+    override fun onSupportNavigateUp(): Boolean {
+        finish() // Close the current activity and go back
+        return true
     }
 
     private fun fetchRestaurants() {

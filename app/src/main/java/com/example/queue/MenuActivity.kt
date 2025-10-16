@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +27,11 @@ class MenuActivity : AppCompatActivity() {
         }
 
         btnMakeReservation.setOnClickListener {
-            Toast.makeText(this, "Make Reservation clicked", Toast.LENGTH_SHORT).show()
-            // TODO: Open MakeReservationActivity
+            val intent = Intent(this, ReservationActivity::class.java)
+            startActivity(intent)
         }
 
-        // Open UserQueueActivity when "View Status" is clicked
+        // Open UserQueueActivity when "Join Queue" is clicked
         btnViewStatus.setOnClickListener {
             val intent = Intent(this, UserQueueActivity::class.java)
             startActivity(intent)
@@ -47,14 +48,18 @@ class MenuActivity : AppCompatActivity() {
             // TODO: Open NotificationsActivity
         }
 
+        // This button is now for logging out
         btnUserMenu.setOnClickListener {
-            Toast.makeText(this, "User Menu clicked", Toast.LENGTH_SHORT).show()
-            // TODO: Open UserMenuActivity or show menu options
-            // Example placeholder
-            // val intent = Intent(this, ProfileActivity::class.java)
-            // startActivity(intent)
+            // Log out from Firebase
+            FirebaseAuth.getInstance().signOut()
+
+            // Go back to the login screen (MainActivity)
+            val intent = Intent(this, MainActivity::class.java)
+            // Clear the back stack so the user can't navigate back to the menu
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish() // Close the current activity
         }
 
     }
 }
-
