@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class AdminMenuActivity : AppCompatActivity() {
 
@@ -34,7 +35,14 @@ class AdminMenuActivity : AppCompatActivity() {
         }
 // Placeholders so that UI feels complete ad has no crashes
         btnWaitTime.setOnClickListener { toast("Wait time coming soon.") }
-        btnSettings.setOnClickListener { toast("Settings coming soon.") }
+
+        btnSettings.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
 
         // Create Restaurant (existing screen)
         btnCreateRestaurant.setOnClickListener {
@@ -50,7 +58,7 @@ class AdminMenuActivity : AppCompatActivity() {
                 startActivity(Intent(this, clazz))
                 return true
             } catch (_: ClassNotFoundException) { /* try next */ }
-        }
+        } 
         return false
     }
 
