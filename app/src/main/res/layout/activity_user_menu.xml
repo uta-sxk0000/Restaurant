@@ -43,48 +43,48 @@
 
         <Button
             android:id="@+id/btnCheckIn"
-            android:layout_width="16dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:contentDescription="@string/check_in"
             android:text="@string/check_in" />
 
         <Button
             android:id="@+id/btnMakeReservation"
-            android:layout_width="16dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:contentDescription="@string/make_reservation"
             android:text="@string/make_reservation" />
 
         <Button
             android:id="@+id/btnViewStatus"
-            android:layout_width="16dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:contentDescription="@string/view_status"
             android:text="@string/view_status" />
 
         <Button
             android:id="@+id/btnViewReservation"
-            android:layout_width="16dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:contentDescription="@string/view_reservation"
             android:text="@string/view_reservation" />
 
         <Button
             android:id="@+id/btnNotifications"
-            android:layout_width="16dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:contentDescription="@string/notifications"
             android:text="@string/notifications" />
 
         <Button
             android:id="@+id/btnUserMenu"
-            android:layout_width="16dp"
-            android:layout_height="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:contentDescription="@string/user_menu"
             android:text="@string/user_menu" />
