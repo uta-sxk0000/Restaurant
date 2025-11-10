@@ -1,3 +1,7 @@
+/*
+* Ruby Veyna
+*/
+
 package com.example.queue;
 
 import android.os.Bundle;
@@ -29,13 +33,12 @@ import java.util.concurrent.TimeUnit;
 
 public class admin_queue extends AppCompatActivity {
 
-    private Spinner spinnerAdminRestaurants;
-    private RecyclerView rvQueue;
-    private QueueAdapter adapter;
-
-    private FirebaseFirestore db;
-    private List<QueueEntry> queueList = new ArrayList<>();
-    private List<String> restaurantList = new ArrayList<>();
+    private Spinner spinnerAdminRestaurants;// Drop down to select a restaurant
+    private RecyclerView rvQueue;           // Displays queue list
+    private QueueAdapter adapter;           // Connects arraylist to RecyclerView
+    private FirebaseFirestore db;           // Database for storing/fetching queue + restaurant info
+    private List<QueueEntry> queueList = new ArrayList<>();     // Stores all queue entries
+    private List<String> restaurantList = new ArrayList<>();    // Stores all restaurant names for the spinner
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
