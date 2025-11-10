@@ -40,10 +40,13 @@ public class admin_queue extends AppCompatActivity {
     private List<QueueEntry> queueList = new ArrayList<>();     // Stores all queue entries
     private List<String> restaurantList = new ArrayList<>();    // Stores all restaurant names for the spinner
 
+    /*
+     * Sets up layout, connects to Firestore, and initializes ui/spinner
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_queue);
+        setContentView(R.layout.activity_admin_queue);          // Sets up layout
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,8 +57,8 @@ public class admin_queue extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        setupRecyclerView();
-        fetchRestaurants();
+        setupRecyclerView();                                    // sets up display list
+        fetchRestaurants();                                     // loads res name
 
         spinnerAdminRestaurants.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -84,12 +87,21 @@ public class admin_queue extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+     * Prepares RecyclerView that displays waiting in line
+     * Connects queueList and connects it to the layout
+     */
     private void setupRecyclerView() {
         adapter = new QueueAdapter(queueList);
         rvQueue.setLayoutManager(new LinearLayoutManager(this));
         rvQueue.setAdapter(adapter);
     }
 
+    /*
+     * Loads res name from Firestore > adds them into resList
+     * to show in dropdown menu
+     * Used bye onCreate() to let admins choose which res queue to see
+     */
     private void fetchRestaurants() {
         restaurantList.add("Select Restaurant");
         db.collection("restaurants")
@@ -107,6 +119,11 @@ public class admin_queue extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(admin_queue.this, "Failed to fetch restaurants.", Toast.LENGTH_SHORT).show());
     }
 
+    /*
+     * Updates from Firestore for the selected res
+     * Clears and refills queueList whenever there is a change (new, deleted, or updated)
+     * using onCreate() to keep the queue view live
+     */
     private void listenForQueueUpdates(String restaurantName) {
         db.collection("queue_entries")
                 .whereEqualTo("restaurantName", restaurantName)
@@ -129,7 +146,11 @@ public class admin_queue extends AppCompatActivity {
                 });
     }
 
-    // RecyclerView Adapter
+    /* RecyclerView Adapter:
+     * Displays name, party size, and wait time for each queue
+     * Remove button to delete entry from firestore
+     * Used by QueueAdapter for each list item
+     */
     class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.QueueViewHolder> {
 
         private List<QueueEntry> items;
