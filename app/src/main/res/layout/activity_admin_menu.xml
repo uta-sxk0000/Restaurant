@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--admin dashboard screen
+    simple stack: scrollview > linear layout > title + 2 column grid
+    using built-in android icons with android:drawableTop which means the icon sits above the text on each button
+    i chose built-in icons so i don’t need extra libraries or themes and it keeps the ui stable for demo-->
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -12,7 +17,8 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Title -->
+        <!--title centered to match the user menu look
+            big, bold, dark gray so it reads like a header and stays consistent across both dashboards-->
         <TextView
             android:id="@+id/tvAdminTitle"
             android:layout_width="wrap_content"
@@ -24,7 +30,8 @@
             android:layout_gravity="center_horizontal"
             android:paddingBottom="16dp" />
 
-        <!-- Grid (2 columns) -->
+        <!--two column grid of buttons
+            each button shows an icon on top and a short label for quick scanning-->
         <GridLayout
             android:id="@+id/adminButtonGrid"
             android:layout_width="match_parent"
@@ -34,7 +41,7 @@
             android:alignmentMode="alignMargins"
             android:padding="8dp">
 
-            <!-- Reservations -->
+            <!--reservations button with calendar style icon-->
             <Button
                 android:id="@+id/btnReservations"
                 android:layout_width="0dp"
@@ -44,7 +51,7 @@
                 android:drawableTop="@android:drawable/ic_menu_today"
                 android:drawablePadding="8dp" />
 
-            <!-- Queue -->
+            <!--queue button with sort icon to suggest ordering-->
             <Button
                 android:id="@+id/btnQueue"
                 android:layout_width="0dp"
@@ -54,7 +61,7 @@
                 android:drawableTop="@android:drawable/ic_menu_sort_by_size"
                 android:drawablePadding="8dp" />
 
-            <!-- Wait Time -->
+            <!--wait time button placeholder uses history style icon to suggest time-->
             <Button
                 android:id="@+id/btnWaitTime"
                 android:layout_width="0dp"
@@ -64,7 +71,7 @@
                 android:drawableTop="@android:drawable/ic_menu_recent_history"
                 android:drawablePadding="8dp" />
 
-            <!-- Settings -->
+            <!--settings doubles as admin actions like logout so it uses the manage icon-->
             <Button
                 android:id="@+id/btnSettings"
                 android:layout_width="0dp"
@@ -74,7 +81,7 @@
                 android:drawableTop="@android:drawable/ic_menu_manage"
                 android:drawablePadding="8dp" />
 
-            <!-- Create Restaurant (full width, spans 2 columns) -->
+            <!--create restaurant spans both columns so it feels like one main call to action-->
             <Button
                 android:id="@+id/btnCreateRestaurant"
                 android:layout_width="match_parent"
