@@ -56,7 +56,7 @@ class AdminMenuActivity : AppCompatActivity() {
         }
     }
 
-    //helper that tries to open the first class name that exists
+    //helper function tries to open the first class name that exists
     //this pattern is a simple idea you see online a lot and it keeps the ui from crashing while we iterate
     private fun startByName(vararg names: String): Boolean {
         for (n in names) {

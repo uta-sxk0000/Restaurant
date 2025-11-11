@@ -41,7 +41,7 @@
             android:alignmentMode="alignMargins"
             android:padding="8dp">
 
-            <!--reservations button with calendar style icon-->
+            <!--reservations button with calendar icon-->
             <Button
                 android:id="@+id/btnReservations"
                 android:layout_width="0dp"
