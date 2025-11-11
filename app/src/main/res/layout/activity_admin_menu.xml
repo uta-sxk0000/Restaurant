@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,73 +12,80 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- Title -->
         <TextView
+            android:id="@+id/tvAdminTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_admin_dashboard"
             android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="#263238"
+            android:textSize="24sp"
+            android:textColor="#333333"
             android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"/>
+            android:paddingBottom="16dp" />
 
-        <!-- ROW 1 -->
-        <LinearLayout
+        <!-- Grid (2 columns) -->
+        <GridLayout
+            android:id="@+id/adminButtonGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:columnCount="2"
+            android:useDefaultMargins="true"
+            android:alignmentMode="alignMargins"
+            android:padding="8dp">
 
+            <!-- Reservations -->
             <Button
                 android:id="@+id/btnReservations"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="@string/label_reservations"/>
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/label_reservations"
+                android:drawableTop="@android:drawable/ic_menu_today"
+                android:drawablePadding="8dp" />
 
+            <!-- Queue -->
             <Button
                 android:id="@+id/btnQueue"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="@string/label_queue"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/label_queue"
+                android:drawableTop="@android:drawable/ic_menu_sort_by_size"
+                android:drawablePadding="8dp" />
 
-        <Space android:layout_width="0dp" android:layout_height="16dp"/>
-
-        <!-- ROW 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
+            <!-- Wait Time -->
             <Button
                 android:id="@+id/btnWaitTime"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="@string/label_wait_time"/>
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/label_wait_time"
+                android:drawableTop="@android:drawable/ic_menu_recent_history"
+                android:drawablePadding="8dp" />
 
+            <!-- Settings -->
             <Button
                 android:id="@+id/btnSettings"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="@string/label_settings"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="@string/label_settings"
+                android:drawableTop="@android:drawable/ic_menu_manage"
+                android:drawablePadding="8dp" />
 
-        <Space android:layout_width="0dp" android:layout_height="8dp"/>
+            <!-- Create Restaurant (full width, spans 2 columns) -->
+            <Button
+                android:id="@+id/btnCreateRestaurant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_create_restaurant"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawablePadding="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_columnSpan="2" />
 
-        <Button
-            android:id="@+id/btnCreateRestaurant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_create_restaurant"
-            android:layout_marginTop="12dp"/>
+        </GridLayout>
+
     </LinearLayout>
 </ScrollView>
