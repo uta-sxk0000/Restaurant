@@ -1,49 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/checkInRoot"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="#F5F5F5"
-    android:padding="24dp"
-    tools:context=".CheckInActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ready to Check In?"
-        android:textSize="28sp"
-        android:textColor="#333333"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
-
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ic_check_in_circle"
-        android:contentDescription="Check-in Icon"
-        android:layout_marginBottom="24dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Let the restaurant know you have arrived."
-        android:textSize="16sp"
-        android:textColor="#666666"
-        android:textAlignment="center"
-        android:layout_marginBottom="48dp"/>
-
-    <Button
-        android:id="@+id/btnArrived"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="@string/arrived"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_background"
-        android:contentDescription="@string/arrived" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reservation Details"
+            android:textSize="28sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutReservationCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/card_background"
+            android:elevation="4dp">
+
+            <TextView
+                android:id="@+id/tvRestaurantName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant: -"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: -"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time: -"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvGuests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guests: -"
+                android:textSize="16sp"
+                android:textColor="#666666"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCheckIn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="CHECK-IN"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_background"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+
+</ScrollView>

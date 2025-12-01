@@ -39,8 +39,8 @@ class MenuActivity : AppCompatActivity() {
 
 
         btnViewReservation.setOnClickListener {
-            Toast.makeText(this, "View Reservation clicked", Toast.LENGTH_SHORT).show()
-            // TODO: Open ViewReservationActivity
+            val intent = Intent(this, ViewReservationActivity::class.java)
+            startActivity(intent)
         }
 
         btnNotifications.setOnClickListener {
