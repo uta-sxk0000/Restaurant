@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Reservation"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <LinearLayout
+            android:id="@+id/layoutReservationInfo"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/tvRestaurant" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Restaurant: -" />
+            <TextView android:id="@+id/tvDateR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Date: -" />
+            <TextView android:id="@+id/tvTimeR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Time: -" />
+            <TextView android:id="@+id/tvGuestsR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Guests: -" />
+            <TextView android:id="@+id/tvStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Status: -" android:layout_marginTop="10dp"/>
+
+            <TextView android:id="@+id/tvPosition" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Position: -" android:layout_marginTop="10dp"/>
+            <TextView android:id="@+id/tvWaitTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Estimated Time: -" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No reservation found."
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</ScrollView>
