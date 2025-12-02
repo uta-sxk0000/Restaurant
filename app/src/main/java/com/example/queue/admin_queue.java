@@ -146,6 +146,24 @@ public class admin_queue extends AppCompatActivity {
                 });
     }
 
+    //q manipulation
+    private void moveParty(QueueEntry entry, int direction) {
+        int index = queueList.indexOf(entry);
+        if (index == -1) return; // not found
+
+        int newIndex = index + direction;
+        if (newIndex < 0 || newIndex >= queueList.size()) return; //can't move
+
+        // Swap in list
+        QueueEntry temp = queueList.get(newIndex);
+        queueList.set(newIndex, entry);
+        queueList.set(index, temp);
+        adapter.notifyItemMoved(index, newIndex);
+
+        db.collection("queue_entries").document(entry.getId())
+                .update("timestamp", entry.getTimestamp()); // Keep original timestamp
+    }
+
     /* RecyclerView Adapter:
      * Displays name, party size, and wait time for each queue
      * Remove button to delete entry from firestore
@@ -180,12 +198,15 @@ public class admin_queue extends AppCompatActivity {
         class QueueViewHolder extends RecyclerView.ViewHolder {
             TextView tvName, tvWaitTime;
             Button btnRemove;
+            Button btnMoveUp, btnMoveDown; //for queue manipulation
 
             QueueViewHolder(View itemView) {
                 super(itemView);
                 tvName = itemView.findViewById(R.id.tvQueueItemName);
                 tvWaitTime = itemView.findViewById(R.id.tvQueueItemWaitTime);
                 btnRemove = itemView.findViewById(R.id.btnRemoveFromQueue);
+                btnMoveUp = itemView.findViewById(R.id.button_move_up); //for move up or down
+                btnMoveDown = itemView.findViewById(R.id.button_move_down);
             }
 
             void bind(QueueEntry entry) {
@@ -204,6 +225,9 @@ public class admin_queue extends AppCompatActivity {
                             .addOnSuccessListener(aVoid -> Toast.makeText(admin_queue.this, "Removed " + entry.getUserName(), Toast.LENGTH_SHORT).show())
                             .addOnFailureListener(e -> Toast.makeText(admin_queue.this, "Failed to remove.", Toast.LENGTH_SHORT).show());
                 });
+                btnMoveUp.setEnabled(queueList.indexOf(entry) > 0); //wont show up for top
+                btnMoveDown.setEnabled(queueList.indexOf(entry) < queueList.size() - 1); //wont show down for last
+
             }
         }
     }
