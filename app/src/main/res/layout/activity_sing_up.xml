@@ -1,77 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--sign up screen
-    layout_width and height are match_parent here which means fill the available space
-    the column is centered with padding so the inputs and buttons feel clean and easy to tap-->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-    <!--email text field with an email keyboard-->
-    <EditText
-        android:id="@+id/editTextEmail"
+    <!-- Background Image -->
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/login_bg"
+        android:scaleType="centerCrop"
+        android:alpha="0.2" />
 
-    <!--password text field uses password input type to hide the characters
-        we do a basic non empty check in code and let firebase handle strength rules for now-->
-    <EditText
-        android:id="@+id/editTextPassword"
+    <!-- Overlay -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="24dp"/>
+        android:layout_height="match_parent"
+        android:background="#80000000" />
 
-    <!--small label for the account type choice below-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Account Type"
-        android:layout_marginBottom="8dp"/>
-
-    <!--horizontal picker where the user selects user or restaurant
-        user is checked by default so most signups are one tap-->
-    <RadioGroup
-        android:id="@+id/radioGroupAccountType"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="24dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
 
-        <RadioButton
-            android:id="@+id/radioUser"
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/resturant_logo"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User"
-            android:checked="true"/>
+            android:text="Welcome!"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_marginBottom="24dp" />
 
-        <RadioButton
-            android:id="@+id/radioRestaurant"
-            android:layout_width="wrap_content"
+        <!-- Email -->
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-light"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-light"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Account Type Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Restaurant"/>
-    </RadioGroup>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginVertical="20dp">
 
-    <!--creates the account when tapped-->
-    <Button
-        android:id="@+id/buttonSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Account"/>
+            <View
+                android:layout_width="80dp"
+                android:layout_height="1dp"
+                android:background="#FFFFFF" />
 
-    <!--quick link to reservation screen to speed up testing flows
-        handy during demos without going back to the main menu-->
-    <Button
-        android:id="@+id/buttonGoToReservation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Make a Reservation"
-        android:layout_marginTop="16dp"/>
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Type"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:paddingHorizontal="12dp"/>
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="1dp"
+                android:background="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Account Type Options -->
+        <RadioGroup
+            android:id="@+id/radioGroupAccountType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/radioUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:buttonTint="#88a9c3"
+                android:paddingEnd="32dp"/>
+
+            <RadioButton
+                android:id="@+id/radioRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:buttonTint="#88a9c3" />
+        </RadioGroup>
+
+
+        <!-- Sign Up button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Sign Up"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-light"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#88a9c3" />
+
+    </LinearLayout>
+
+</FrameLayout>

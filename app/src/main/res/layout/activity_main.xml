@@ -28,7 +28,7 @@
         <!-- Logo -->
         <ImageView
             android:id="@+id/imageLogo"
-            android:layout_width="140dp"
+            android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_marginBottom="24dp"
             android:adjustViewBounds="true"
@@ -51,7 +51,7 @@
         <!-- Email Input -->
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
             android:fontFamily="sans-serif-light"
@@ -63,7 +63,7 @@
         <!-- Password Input -->
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Password"
             android:fontFamily="sans-serif-light"
@@ -75,7 +75,7 @@
         <!-- Login Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Login"
             android:textColor="#FFFFFF"
@@ -113,7 +113,7 @@
         <!-- Sign Up Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSignUp"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Sign Up"
             android:textColor="#FFFFFF"
