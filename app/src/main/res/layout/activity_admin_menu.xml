@@ -81,16 +81,27 @@
                 android:drawableTop="@android:drawable/ic_menu_manage"
                 android:drawablePadding="8dp" />
 
-            <!--create restaurant spans both columns so it feels like one main call to action-->
+            <!--create restaurant button takes up one column-->
             <Button
                 android:id="@+id/btnCreateRestaurant"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
                 android:text="@string/label_create_restaurant"
                 android:drawableTop="@android:drawable/ic_input_add"
                 android:drawablePadding="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_columnSpan="2" />
+                android:layout_marginTop="8dp" />
+
+            <!--notifications button with a mail icon-->
+            <Button
+                android:id="@+id/btnNotifications"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="Notifications"
+                android:drawableTop="@android:drawable/ic_dialog_email"
+                android:drawablePadding="8dp"
+                android:layout_marginTop="8dp" />
 
         </GridLayout>
 

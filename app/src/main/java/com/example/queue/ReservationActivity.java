@@ -83,6 +83,7 @@ public class ReservationActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String restaurantName = documentSnapshot.getString("name");
+                        String ownerId = documentSnapshot.getString("userId"); // Assuming owner's ID is 'userId'
 
                         Map<String, Object> reservation = new HashMap<>();
                         reservation.put("restaurantId", restaurantId);
@@ -97,6 +98,18 @@ public class ReservationActivity extends AppCompatActivity {
                         db.collection("reservations")
                                 .add(reservation)
                                 .addOnSuccessListener(documentReference -> {
+                                    // After creating the reservation, create a notification for the admin
+                                    if (ownerId != null && !ownerId.isEmpty()) {
+                                        Map<String, Object> notification = new HashMap<>();
+                                        notification.put("userId", ownerId);
+                                        notification.put("message", "You have a new reservation request from " + name + ".");
+                                        notification.put("timestamp", com.google.firebase.Timestamp.now());
+
+                                        db.collection("notifications").add(notification)
+                                                .addOnSuccessListener(aVoid -> Log.d("ReservationActivity", "Notification sent to admin."))
+                                                .addOnFailureListener(e -> Log.e("ReservationActivity", "Error sending notification.", e));
+                                    }
+
                                     Toast.makeText(ReservationActivity.this, "Reservation request sent!", Toast.LENGTH_SHORT).show();
                                     Log.d("ReservationActivity", "Reservation request created with ID: " + documentReference.getId());
                                     finish(); // Go back to the previous screen

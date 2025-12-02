@@ -20,6 +20,7 @@ class AdminMenuActivity : AppCompatActivity() {
         val btnReservationRequests = findViewById<Button>(R.id.btnReservationRequests)
         val btnSettings         = findViewById<Button>(R.id.btnSettings)
         val btnCreateRestaurant = findViewById<Button>(R.id.btnCreateRestaurant)
+        val btnNotifications    = findViewById<Button>(R.id.btnNotifications)
 
         //reservations tries a few possible screen names because our project has mixed names in places
         //this keeps the app from crashing if one class is not there yet
@@ -55,6 +56,10 @@ class AdminMenuActivity : AppCompatActivity() {
         btnCreateRestaurant.setOnClickListener {
             val ok = startByName("com.example.queue.CreateRestaurantActivity")
             if (!ok) toast("Create Restaurant screen not found.")
+        }
+
+        btnNotifications.setOnClickListener {
+            startActivity(Intent(this, NotificationActivity::class.java))
         }
     }
 

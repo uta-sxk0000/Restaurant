@@ -46,8 +46,8 @@ class MenuActivity : AppCompatActivity() {
         }
 
         btnNotifications.setOnClickListener {
-            Toast.makeText(this, "Notifications clicked", Toast.LENGTH_SHORT).show()
-            // TODO: Open NotificationsActivity
+            val intent = Intent(this, NotificationActivity::class.java)
+            startActivity(intent)
         }
 
         // This button is now for logging out
