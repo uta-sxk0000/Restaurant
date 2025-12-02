@@ -1,72 +1,99 @@
 package com.example.queue
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import android.widget.LinearLayout
+import android.view.View
 import android.widget.TextView
-import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class ViewReservationActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
-    private lateinit var auth: FirebaseAuth
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: AcceptedReservationAdapter
+    private lateinit var textViewNoReservations: TextView
+    private val reservationList = mutableListOf<Reservation>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reservation)
 
-        // Enable toolbar back arrow
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Accepted Reservations"
 
         db = FirebaseFirestore.getInstance()
-        auth = FirebaseAuth.getInstance()
+        mAuth = FirebaseAuth.getInstance()
 
-        val layoutInfo = findViewById<LinearLayout>(R.id.layoutReservationInfo)
-        val tvEmpty = findViewById<TextView>(R.id.tvEmpty)
+        recyclerView = findViewById(R.id.recyclerViewReservations)
+        textViewNoReservations = findViewById(R.id.textViewNoReservationsMessage)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = AcceptedReservationAdapter(reservationList)
+        recyclerView.adapter = adapter
 
-        val tvRestaurant = findViewById<TextView>(R.id.tvRestaurant)
-        val tvDate = findViewById<TextView>(R.id.tvDateR)
-        val tvTime = findViewById<TextView>(R.id.tvTimeR)
-        val tvGuests = findViewById<TextView>(R.id.tvGuestsR)
-        val tvStatus = findViewById<TextView>(R.id.tvStatus)
-        val tvPosition = findViewById<TextView>(R.id.tvPosition)
-        val tvWaitTime = findViewById<TextView>(R.id.tvWaitTime)
+        fetchAcceptedReservations()
+    }
 
-        val userId = auth.currentUser?.uid ?: return
+    private fun fetchAcceptedReservations() {
+        val currentUser = mAuth.currentUser
+        if (currentUser == null) {
+            Log.e("ViewReservation", "No user logged in")
+            textViewNoReservations.text = "You must be logged in to view reservations."
+            textViewNoReservations.visibility = View.VISIBLE
+            return
+        }
+        val userId = currentUser.uid
 
-        // Load reservation from Firestore
-        db.collection("reservations").document(userId)
-            .get()
-            .addOnSuccessListener { doc ->
-                if (doc.exists()) {
-                    layoutInfo.visibility = LinearLayout.VISIBLE
-                    tvEmpty.visibility = TextView.GONE
+        db.collection("users").document(userId).get()
+            .addOnSuccessListener { userDocument ->
+                val isAdmin = userDocument.getBoolean("isAdmin") ?: false
+                
+                var query: Query = db.collection("reservations")
+                    .whereEqualTo("status", "accepted")
 
-                    tvRestaurant.text = "Restaurant: ${doc.getString("restaurant") ?: "-"}"
-                    tvDate.text = "Date: ${doc.getString("date") ?: "-"}"
-                    tvTime.text = "Time: ${doc.getString("time") ?: "-"}"
-                    tvGuests.text = "Guests: ${doc.get("guests") ?: "-"}"
-                    tvStatus.text = "Status: ${doc.getString("status") ?: "Confirmed"}"
-                    tvPosition.text = "Position: ${doc.get("position") ?: "-"}"
-                    tvWaitTime.text = "Estimated Time: ${doc.get("waitTime") ?: "-"} minutes"
-                } else {
-                    layoutInfo.visibility = LinearLayout.GONE
-                    tvEmpty.visibility = TextView.VISIBLE
+                if (!isAdmin) {
+                    query = query.whereEqualTo("userId", userId)
                 }
+
+                query.get()
+                    .addOnSuccessListener { documents ->
+                        if (documents.isEmpty) {
+                            Log.d("ViewReservation", "No accepted reservations found.")
+                            textViewNoReservations.visibility = View.VISIBLE
+                            recyclerView.visibility = View.GONE
+                        } else {
+                            reservationList.clear()
+                            for (document in documents) {
+                                val reservation = document.toObject(Reservation::class.java)
+                                reservationList.add(reservation)
+                            }
+                            adapter.notifyDataSetChanged()
+                            textViewNoReservations.visibility = View.GONE
+                            recyclerView.visibility = View.VISIBLE
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.e("ViewReservation", "Error getting reservations: ", exception)
+                        textViewNoReservations.text = "Error loading reservations."
+                        textViewNoReservations.visibility = View.VISIBLE
+                    }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("ViewReservation", "Error checking admin status: ", exception)
+                textViewNoReservations.text = "Error checking user role."
+                textViewNoReservations.visibility = View.VISIBLE
             }
     }
 
-    // Handle toolbar back arrow
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
-    }
-
-    // Handle action bar item selections
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()

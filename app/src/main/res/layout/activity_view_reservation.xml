@@ -1,50 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    tools:context=".ViewReservationActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Reservation"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="15dp"/>
-
-        <LinearLayout
-            android:id="@+id/layoutReservationInfo"
-            android:orientation="vertical"
-            android:padding="18dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
 
-            <TextView android:id="@+id/tvRestaurant" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Restaurant: -" />
-            <TextView android:id="@+id/tvDateR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Date: -" />
-            <TextView android:id="@+id/tvTimeR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Time: -" />
-            <TextView android:id="@+id/tvGuestsR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Guests: -" />
-            <TextView android:id="@+id/tvStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Status: -" android:layout_marginTop="10dp"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView android:id="@+id/tvPosition" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Position: -" android:layout_marginTop="10dp"/>
-            <TextView android:id="@+id/tvWaitTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Estimated Time: -" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewReservations"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:listitem="@layout/list_item_accepted_reservation" />
 
         <TextView
-            android:id="@+id/tvEmpty"
+            android:id="@+id/textViewNoReservationsMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No reservation found."
-            android:textSize="18sp"
-            android:layout_marginTop="20dp"
-            android:visibility="gone"/>
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:text="No accepted reservations found."
+            android:visibility="visible" />
 
-</ScrollView>
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
