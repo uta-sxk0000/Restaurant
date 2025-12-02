@@ -50,7 +50,21 @@ public class ReservationRequestAdapter extends FirestoreRecyclerAdapter<Reservat
         });
 
         holder.rejectButton.setOnClickListener(v -> {
-            getSnapshots().getSnapshot(position).getReference().update("status", "rejected");
+            getSnapshots().getSnapshot(position).getReference().update("status", "rejected")
+                    .addOnSuccessListener(aVoid -> {
+                        // After rejecting, create a notification for the user
+                        String userId = model.getUserId();
+                        if (userId != null && !userId.isEmpty()) {
+                            Map<String, Object> notification = new HashMap<>();
+                            notification.put("userId", userId);
+                            notification.put("message", "Your reservation at " + model.getRestaurantName() + " has been rejected.");
+                            notification.put("timestamp", com.google.firebase.Timestamp.now());
+
+                            db.collection("notifications").add(notification)
+                                    .addOnSuccessListener(docRef -> Log.d("Adapter", "Rejection notification sent to user."))
+                                    .addOnFailureListener(e -> Log.e("Adapter", "Error sending rejection notification", e));
+                        }
+                    });
         });
     }
 
