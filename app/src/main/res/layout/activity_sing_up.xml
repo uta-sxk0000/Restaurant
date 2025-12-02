@@ -133,7 +133,6 @@
                 android:buttonTint="#88a9c3" />
         </RadioGroup>
 
-
         <!-- Sign Up button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSignUp"
