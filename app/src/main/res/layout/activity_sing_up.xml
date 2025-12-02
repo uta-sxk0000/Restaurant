@@ -54,11 +54,12 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
+            android:textColorHint="#A9A9A9"
             android:fontFamily="sans-serif-light"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:background="@android:drawable/edit_text"
+            android:background="@drawable/rounded_corners_bg"
             android:layout_marginBottom="16dp" />
 
         <!-- Password -->
@@ -67,11 +68,12 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Password"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
+            android:textColorHint="#A9A9A9"
             android:fontFamily="sans-serif-light"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:background="@android:drawable/edit_text"
+            android:background="@drawable/rounded_corners_bg"
             android:layout_marginBottom="16dp" />
 
         <!-- Account Type Header -->
