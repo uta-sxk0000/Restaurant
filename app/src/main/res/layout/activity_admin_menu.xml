@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="55dp">
 
         <!--title centered to match the user menu look
             big, bold, dark gray so it reads like a header and stays consistent across both dashboards-->
@@ -23,12 +23,13 @@
             android:id="@+id/tvAdminTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_admin_dashboard"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:textColor="#333333"
             android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp" />
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingBottom="16dp"
+            android:text="@string/title_admin_dashboard"
+            android:textColor="#333333"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <!--two column grid of buttons
             each button shows an icon on top and a short label for quick scanning-->
@@ -36,20 +37,25 @@
             android:id="@+id/adminButtonGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:columnCount="2"
-            android:useDefaultMargins="true"
+            android:padding="8dp"
             android:alignmentMode="alignMargins"
-            android:padding="8dp">
+            android:useDefaultMargins="true"
+            >
 
             <!--reservations button with calendar icon-->
             <Button
                 android:id="@+id/btnReservations"
-                android:layout_width="0dp"
+                android:layout_width="0.5dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:text="@string/label_reservations"
                 android:drawableTop="@android:drawable/ic_menu_today"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:stateListAnimator="@null"
+                android:background="#f7f7f7"
+                android:text="@string/label_reservations"
+                android:fontFamily="sans-serif-light"/>
 
             <!--queue button with sort icon to suggest ordering-->
             <Button
@@ -57,9 +63,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:text="@string/label_queue"
                 android:drawableTop="@android:drawable/ic_menu_sort_by_size"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:stateListAnimator="@null"
+                android:background="#f7f7f7"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/label_queue" />
 
             <!--wait time button placeholder uses history style icon to suggest time-->
             <Button
@@ -67,9 +76,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:text="@string/label_wait_time"
                 android:drawableTop="@android:drawable/ic_menu_recent_history"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:stateListAnimator="@null"
+                android:background="#f7f7f7"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/label_wait_time" />
 
             <!--settings doubles as admin actions like logout so it uses the manage icon-->
             <Button
@@ -77,20 +89,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:text="@string/label_settings"
                 android:drawableTop="@android:drawable/ic_menu_manage"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:stateListAnimator="@null"
+                android:background="#f7f7f7"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/label_settings"
+                />
 
             <!--create restaurant spans both columns so it feels like one main call to action-->
             <Button
                 android:id="@+id/btnCreateRestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_create_restaurant"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="8dp"
                 android:drawableTop="@android:drawable/ic_input_add"
                 android:drawablePadding="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_columnSpan="2" />
+                android:background="#f7f7f7"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/label_create_restaurant" />
 
         </GridLayout>
 
