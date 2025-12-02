@@ -12,24 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
         <activity
-            android:name=".UserQueueActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:name=".SelectRestaurantActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserQueueActivity" />
         <activity
             android:name=".CreateRestaurantActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:exported="false" />
         <activity
             android:name=".AdminMenuActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:exported="false" />
         <activity
-            android:name=".MenuActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:name=".MenuActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,24 +37,25 @@
         <activity
             android:name=".SingUpActivity"
             android:exported="true"
-            android:label="Sign Up"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:label="Sign Up" />
         <activity
             android:name=".admin_queue"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" /><!-- admin queue activity -->
+            android:exported="true" /><!-- admin queue activity -->
         <activity
             android:name=".CheckInActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:exported="false" />
         <activity
             android:name=".ReservationActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:exported="false" />
         <activity
             android:name=".ViewReservationActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+            android:exported="false" />
+        <activity
+            android:name=".ReservationRequestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectRestaurantForRequestActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

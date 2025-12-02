@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.queue.SelectRestaurantActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MenuActivity : AppCompatActivity() {
@@ -27,7 +28,8 @@ class MenuActivity : AppCompatActivity() {
         }
 
         btnMakeReservation.setOnClickListener {
-            val intent = Intent(this, ReservationActivity::class.java)
+            // This is the corrected line:
+            val intent = Intent(this, SelectRestaurantActivity::class.java)
             startActivity(intent)
         }
 

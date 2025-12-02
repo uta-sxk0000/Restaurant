@@ -17,7 +17,7 @@ class AdminMenuActivity : AppCompatActivity() {
         //grab each button from the layout so we can attach actions
         val btnReservations     = findViewById<Button>(R.id.btnReservations)
         val btnQueue            = findViewById<Button>(R.id.btnQueue)
-        val btnWaitTime         = findViewById<Button>(R.id.btnWaitTime)
+        val btnReservationRequests = findViewById<Button>(R.id.btnReservationRequests)
         val btnSettings         = findViewById<Button>(R.id.btnSettings)
         val btnCreateRestaurant = findViewById<Button>(R.id.btnCreateRestaurant)
 
@@ -37,8 +37,10 @@ class AdminMenuActivity : AppCompatActivity() {
             startActivity(Intent(this, com.example.queue.admin_queue::class.java))
         }
 
-        //wait time is a placeholder for now so the ui feels complete without errors
-        btnWaitTime.setOnClickListener { toast("Wait time coming soon.") }
+        //This now opens the new ReservationRequestActivity
+        btnReservationRequests.setOnClickListener {
+            startActivity(Intent(this, ReservationRequestActivity::class.java))
+        }
 
         //settings acts as logout here to keep the demo simple and predictable for the walkthrough
         btnSettings.setOnClickListener {

@@ -61,14 +61,14 @@
                 android:drawableTop="@android:drawable/ic_menu_sort_by_size"
                 android:drawablePadding="8dp" />
 
-            <!--wait time button placeholder uses history style icon to suggest time-->
+            <!--reservation requests button with a notification-style icon-->
             <Button
-                android:id="@+id/btnWaitTime"
+                android:id="@+id/btnReservationRequests"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:text="@string/label_wait_time"
-                android:drawableTop="@android:drawable/ic_menu_recent_history"
+                android:text="Reservation Requests"
+                android:drawableTop="@android:drawable/ic_menu_info_details"
                 android:drawablePadding="8dp" />
 
             <!--settings doubles as admin actions like logout so it uses the manage icon-->
