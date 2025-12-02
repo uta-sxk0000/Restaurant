@@ -4,72 +4,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="#F5F5F5"
-    android:padding="24dp"
     tools:context=".ReservationActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Make a Reservation"
-        android:textSize="28sp"
-        android:textColor="#333333"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
-
-    <EditText
-        android:id="@+id/editTextName"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="Name"
-        android:background="@drawable/edittext_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editTextGuests"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="Number of Guests"
-        android:background="@drawable/edittext_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:inputType="number"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="Date (MM/DD/YYYY)"
-        android:background="@drawable/edittext_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:inputType="date"
-        android:layout_marginBottom="16dp"/>
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make a Reservation"
+            android:textSize="28sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"/>
 
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:hint="Time (HH:MM)"
-        android:background="@drawable/edittext_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:inputType="time"
-        android:layout_marginBottom="32dp"/>
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Name"
+            android:background="@drawable/edittext_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/buttonReserve"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Reserve"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_background"/>
+        <EditText
+            android:id="@+id/editTextGuests"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Number of Guests"
+            android:background="@drawable/edittext_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="number"
+            android:layout_marginBottom="16dp"/>
 
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Date (MM/DD/YYYY)"
+            android:background="@drawable/edittext_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="date"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Time (HH:MM)"
+            android:background="@drawable/edittext_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="time"
+            android:layout_marginBottom="32dp"/>
+
+        <Button
+            android:id="@+id/buttonReserve"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Reserve"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_background"/>
+    </LinearLayout>
 </LinearLayout>
