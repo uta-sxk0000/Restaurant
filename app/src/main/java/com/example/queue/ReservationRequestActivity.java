@@ -1,6 +1,10 @@
 package com.example.queue;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +23,15 @@ public class ReservationRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservation_request);
 
         setUpRecyclerView();
+
+        Button backButton = findViewById(R.id.backToAdminMenuButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReservationRequestActivity.this, AdminMenuActivity.class));
+                finish();
+            }
+        });
     }
 
     private void setUpRecyclerView() {
@@ -39,12 +52,16 @@ public class ReservationRequestActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        adapter.startListening();
+        if (adapter != null) {
+            adapter.startListening();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if (adapter != null) {
+            adapter.stopListening();
+        }
     }
 }

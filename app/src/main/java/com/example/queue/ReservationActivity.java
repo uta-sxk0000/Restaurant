@@ -1,12 +1,14 @@
 package com.example.queue;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,16 +37,18 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         // Initialize Firebase
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        // For this to work, the previous activity MUST pass the restaurant's document ID
         restaurantId = getIntent().getStringExtra("restaurantId");
         if (restaurantId == null || restaurantId.isEmpty()) {
             Toast.makeText(this, "Error: Restaurant ID is missing.", Toast.LENGTH_LONG).show();
             Log.e("ReservationActivity", "Restaurant ID was not passed in the intent.");
-            finish(); 
+            finish();
             return;
         }
 
@@ -57,6 +61,7 @@ public class ReservationActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Make a Reservation");
         }
 
         buttonReserve.setOnClickListener(v -> createReservationRequest());
@@ -74,16 +79,14 @@ public class ReservationActivity extends AppCompatActivity {
             return;
         }
 
-        // First, get the restaurant's name from its ID
         db.collection("restaurants").document(restaurantId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String restaurantName = documentSnapshot.getString("name");
 
-                        // Now create the reservation map with all the details
                         Map<String, Object> reservation = new HashMap<>();
                         reservation.put("restaurantId", restaurantId);
-                        reservation.put("restaurantName", restaurantName); // Add restaurant name
+                        reservation.put("restaurantName", restaurantName);
                         reservation.put("userId", userId);
                         reservation.put("customerName", name);
                         reservation.put("guestCount", guests);
@@ -91,13 +94,12 @@ public class ReservationActivity extends AppCompatActivity {
                         reservation.put("time", time);
                         reservation.put("status", "pending");
 
-                        // Save the reservation to the database
                         db.collection("reservations")
                                 .add(reservation)
                                 .addOnSuccessListener(documentReference -> {
                                     Toast.makeText(ReservationActivity.this, "Reservation request sent!", Toast.LENGTH_SHORT).show();
                                     Log.d("ReservationActivity", "Reservation request created with ID: " + documentReference.getId());
-                                    finish();
+                                    finish(); // Go back to the previous screen
                                 })
                                 .addOnFailureListener(e -> {
                                     Toast.makeText(ReservationActivity.this, "Failed to send request. Please try again.", Toast.LENGTH_SHORT).show();
@@ -113,7 +115,6 @@ public class ReservationActivity extends AppCompatActivity {
                     Log.e("ReservationActivity", "Error getting restaurant document", e);
                 });
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
