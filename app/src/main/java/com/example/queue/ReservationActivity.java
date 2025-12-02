@@ -83,7 +83,7 @@ public class ReservationActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String restaurantName = documentSnapshot.getString("name");
-                        String ownerId = documentSnapshot.getString("userId"); // Assuming owner's ID is 'userId'
+                        String ownerId = documentSnapshot.getString("ownerId"); // Corrected to use ownerId
 
                         Map<String, Object> reservation = new HashMap<>();
                         reservation.put("restaurantId", restaurantId);
