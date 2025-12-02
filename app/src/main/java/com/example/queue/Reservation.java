@@ -2,6 +2,8 @@ package com.example.queue;
 
 public class Reservation {
 
+    public String id; // Public field to store the document ID
+
     // Fields must be public or have public getters to be used by Firestore
     private String restaurantName;
     private String customerName;
@@ -15,7 +17,7 @@ public class Reservation {
         // Public no-arg constructor required by Firebase
     }
 
-    // --- Getters --- 
+    // --- Getters ---
     // The FirestoreRecyclerAdapter uses these to get the data for each reservation
 
     public String getRestaurantName() {

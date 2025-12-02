@@ -18,7 +18,7 @@ class ViewReservationActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AcceptedReservationAdapter
+    private var adapter: AcceptedReservationAdapter? = null
     private lateinit var textViewNoReservations: TextView
     private val reservationList = mutableListOf<Reservation>()
 
@@ -29,7 +29,6 @@ class ViewReservationActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Accepted Reservations"
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -37,8 +36,6 @@ class ViewReservationActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewReservations)
         textViewNoReservations = findViewById(R.id.textViewNoReservationsMessage)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AcceptedReservationAdapter(reservationList)
-        recyclerView.adapter = adapter
 
         fetchAcceptedReservations()
     }
@@ -57,6 +54,11 @@ class ViewReservationActivity : AppCompatActivity() {
             .addOnSuccessListener { userDocument ->
                 val isAdmin = userDocument.getBoolean("isAdmin") ?: false
                 
+                supportActionBar?.title = if (isAdmin) "Accepted Reservations" else "My Reservations"
+
+                adapter = AcceptedReservationAdapter(reservationList, isAdmin)
+                recyclerView.adapter = adapter
+
                 var query: Query = db.collection("reservations")
                     .whereEqualTo("status", "accepted")
 
@@ -64,28 +66,35 @@ class ViewReservationActivity : AppCompatActivity() {
                     query = query.whereEqualTo("userId", userId)
                 }
 
-                query.get()
-                    .addOnSuccessListener { documents ->
-                        if (documents.isEmpty) {
-                            Log.d("ViewReservation", "No accepted reservations found.")
-                            textViewNoReservations.visibility = View.VISIBLE
-                            recyclerView.visibility = View.GONE
-                        } else {
-                            reservationList.clear()
-                            for (document in documents) {
-                                val reservation = document.toObject(Reservation::class.java)
-                                reservationList.add(reservation)
-                            }
-                            adapter.notifyDataSetChanged()
-                            textViewNoReservations.visibility = View.GONE
-                            recyclerView.visibility = View.VISIBLE
-                        }
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.e("ViewReservation", "Error getting reservations: ", exception)
+                query.addSnapshotListener { snapshots, e ->
+                    if (e != null) {
+                        Log.e("ViewReservation", "Listen failed.", e)
                         textViewNoReservations.text = "Error loading reservations."
                         textViewNoReservations.visibility = View.VISIBLE
+                        return@addSnapshotListener
                     }
+
+                    if (snapshots != null && !snapshots.isEmpty) {
+                        reservationList.clear()
+                        for (document in snapshots.documents) {
+                            val reservation = document.toObject(Reservation::class.java)
+                            if (reservation != null) {
+                                // This is the crucial line that was missing:
+                                reservation.id = document.id 
+                                reservationList.add(reservation)
+                            }
+                        }
+                        adapter?.notifyDataSetChanged()
+                        textViewNoReservations.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                    } else {
+                        reservationList.clear()
+                        adapter?.notifyDataSetChanged()
+                        textViewNoReservations.text = "No accepted reservations found."
+                        textViewNoReservations.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+                    }
+                }
             }
             .addOnFailureListener { exception ->
                 Log.e("ViewReservation", "Error checking admin status: ", exception)
