@@ -10,9 +10,9 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 class UserQueueActivity : AppCompatActivity() {
 
@@ -28,13 +28,15 @@ class UserQueueActivity : AppCompatActivity() {
     // Views for displaying queue status
     private lateinit var tvQueueName: TextView
     private lateinit var tvQueuePosition: TextView
-    private lateinit var tvEstimatedTime: TextView
 
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_queue)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         // Enable the back arrow in the action bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -49,8 +51,6 @@ class UserQueueActivity : AppCompatActivity() {
         layoutQueueStatus = findViewById(R.id.layoutQueueStatus)
         tvQueueName = findViewById(R.id.tvQueueName)
         tvQueuePosition = findViewById(R.id.tvQueuePosition)
-        tvEstimatedTime = findViewById(R.id.tvEstimatedTime)
-
 
         fetchRestaurants()
 
@@ -147,11 +147,9 @@ class UserQueueActivity : AppCompatActivity() {
 
                 if (userPosition != -1) {
                     tvQueuePosition.text = "Position: ${userPosition + 1}"
-                    tvEstimatedTime.text = "Estimated Time: 0 minutes" // Placeholder
                 } else {
                     // This can happen briefly before the user's document is available in the snapshot.
                     tvQueuePosition.text = "Position: Calculating..."
-                    tvEstimatedTime.text = ""
                 }
             }
     }
