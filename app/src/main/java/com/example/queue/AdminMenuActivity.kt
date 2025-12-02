@@ -22,15 +22,9 @@ class AdminMenuActivity : AppCompatActivity() {
         val btnCreateRestaurant = findViewById<Button>(R.id.btnCreateRestaurant)
         val btnNotifications    = findViewById<Button>(R.id.btnNotifications)
 
-        //reservations tries a few possible screen names because our project has mixed names in places
-        //this keeps the app from crashing if one class is not there yet
+        // This now opens the ViewReservationActivity to show only accepted reservations
         btnReservations.setOnClickListener {
-            val ok = startByName(
-                "com.example.queue.admin_queue",
-                "com.example.queue.AdminQueueActivity",
-                "com.example.queue.ManageReservationActivity"
-            )
-            if (!ok) toast("Reservations screen not ready.")
+            startActivity(Intent(this, ViewReservationActivity::class.java))
         }
 
         //queue opens the existing admin queue screen

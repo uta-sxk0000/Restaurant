@@ -12,6 +12,7 @@ public class Reservation {
     private String time;
     private String status;
     private String userId;
+    private String ownerId; // <-- ADDED THIS FIELD
 
     public Reservation() {
         // Public no-arg constructor required by Firebase
@@ -46,5 +47,9 @@ public class Reservation {
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getOwnerId() { // <-- ADDED THIS GETTER
+        return ownerId;
     }
 }

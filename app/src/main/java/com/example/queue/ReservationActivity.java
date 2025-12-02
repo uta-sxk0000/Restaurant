@@ -83,7 +83,7 @@ public class ReservationActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String restaurantName = documentSnapshot.getString("name");
-                        String ownerId = documentSnapshot.getString("ownerId"); // Corrected to use ownerId
+                        String ownerId = documentSnapshot.getString("ownerId");
 
                         Map<String, Object> reservation = new HashMap<>();
                         reservation.put("restaurantId", restaurantId);
@@ -94,6 +94,7 @@ public class ReservationActivity extends AppCompatActivity {
                         reservation.put("date", date);
                         reservation.put("time", time);
                         reservation.put("status", "pending");
+                        reservation.put("ownerId", ownerId); // THE CRITICAL FIX
 
                         db.collection("reservations")
                                 .add(reservation)

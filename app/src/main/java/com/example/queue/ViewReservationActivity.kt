@@ -37,70 +37,96 @@ class ViewReservationActivity : AppCompatActivity() {
         textViewNoReservations = findViewById(R.id.textViewNoReservationsMessage)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        fetchAcceptedReservations()
+        // The adapter is initialized here but the list is populated later
+        adapter = AcceptedReservationAdapter(reservationList, true)
+        recyclerView.adapter = adapter
+        
+        fetchUserAndDefineQuery()
     }
 
-    private fun fetchAcceptedReservations() {
+    private fun fetchUserAndDefineQuery() {
         val currentUser = mAuth.currentUser
         if (currentUser == null) {
-            Log.e("ViewReservation", "No user logged in")
-            textViewNoReservations.text = "You must be logged in to view reservations."
-            textViewNoReservations.visibility = View.VISIBLE
+            Log.e("ViewReservation", "CRITICAL: No user is currently logged in.")
+            showError("You must be logged in to view reservations.")
             return
         }
         val userId = currentUser.uid
+        Log.d("ViewReservation", "Current User ID: $userId")
 
         db.collection("users").document(userId).get()
             .addOnSuccessListener { userDocument ->
-                val isAdmin = userDocument.getBoolean("isAdmin") ?: false
-                
+                if (!userDocument.exists()) {
+                    Log.e("ViewReservation", "CRITICAL: User document does not exist for UID: $userId")
+                    showError("Could not find user profile.")
+                    return@addOnSuccessListener
+                }
+
+                val accountType = userDocument.getString("accountType")
+                // THIS IS THE FIX: Check for "Restaurant" to identify an admin user.
+                val isAdmin = accountType == "Restaurant"
+                Log.d("ViewReservation", "User accountType is '$accountType'. isAdmin check is: $isAdmin")
                 supportActionBar?.title = if (isAdmin) "Accepted Reservations" else "My Reservations"
 
-                adapter = AcceptedReservationAdapter(reservationList, isAdmin)
-                recyclerView.adapter = adapter
-
-                var query: Query = db.collection("reservations")
-                    .whereEqualTo("status", "accepted")
-
-                if (!isAdmin) {
-                    query = query.whereEqualTo("userId", userId)
+                val query = if (isAdmin) {
+                    Log.d("ViewReservation", "Querying as ADMIN. Searching for reservations with ownerId == $userId")
+                    db.collection("reservations")
+                        .whereEqualTo("ownerId", userId)
+                        .whereEqualTo("status", "accepted")
+                } else {
+                    Log.d("ViewReservation", "Querying as CUSTOMER. Searching for reservations with userId == $userId")
+                    db.collection("reservations")
+                        .whereEqualTo("userId", userId)
+                        .whereEqualTo("status", "accepted")
                 }
-
-                query.addSnapshotListener { snapshots, e ->
-                    if (e != null) {
-                        Log.e("ViewReservation", "Listen failed.", e)
-                        textViewNoReservations.text = "Error loading reservations."
-                        textViewNoReservations.visibility = View.VISIBLE
-                        return@addSnapshotListener
-                    }
-
-                    if (snapshots != null && !snapshots.isEmpty) {
-                        reservationList.clear()
-                        for (document in snapshots.documents) {
-                            val reservation = document.toObject(Reservation::class.java)
-                            if (reservation != null) {
-                                // This is the crucial line that was missing:
-                                reservation.id = document.id 
-                                reservationList.add(reservation)
-                            }
-                        }
-                        adapter?.notifyDataSetChanged()
-                        textViewNoReservations.visibility = View.GONE
-                        recyclerView.visibility = View.VISIBLE
-                    } else {
-                        reservationList.clear()
-                        adapter?.notifyDataSetChanged()
-                        textViewNoReservations.text = "No accepted reservations found."
-                        textViewNoReservations.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
-                    }
-                }
+                
+                attachQueryListener(query)
             }
             .addOnFailureListener { exception ->
-                Log.e("ViewReservation", "Error checking admin status: ", exception)
-                textViewNoReservations.text = "Error checking user role."
-                textViewNoReservations.visibility = View.VISIBLE
+                Log.e("ViewReservation", "CRITICAL: Failed to get user document.", exception)
+                showError("Error checking user role.")
             }
+    }
+    
+    private fun attachQueryListener(query: Query) {
+        query.addSnapshotListener { snapshots, e ->
+            if (e != null) {
+                Log.e("ViewReservation", "Firestore listen failed.", e)
+                showError("Error loading reservations.")
+                return@addSnapshotListener
+            }
+
+            if (snapshots != null && !snapshots.isEmpty) {
+                Log.d("ViewReservation", "Query successful. Found ${snapshots.size()} documents.")
+                reservationList.clear()
+                for (document in snapshots.documents) {
+                    val reservation = document.toObject(Reservation::class.java)
+                    if (reservation != null) {
+                        reservation.id = document.id
+                        reservationList.add(reservation)
+                        Log.d("ViewReservation", "  - Added reservation: ${document.id} | Status: ${reservation.status}")
+                    } else {
+                        Log.w("ViewReservation", "  - Failed to parse document ${document.id} into Reservation object.")
+                    }
+                }
+                adapter?.notifyDataSetChanged()
+                textViewNoReservations.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            } else {
+                Log.w("ViewReservation", "Query returned no documents. Displaying 'no reservations' message.")
+                reservationList.clear() // Clear the list for the "no reservations" case
+                adapter?.notifyDataSetChanged() // Notify the adapter
+                showError("No accepted reservations found.")
+            }
+        }
+    }
+
+    private fun showError(message: String) {
+        reservationList.clear()
+        adapter?.notifyDataSetChanged()
+        textViewNoReservations.text = message
+        textViewNoReservations.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
