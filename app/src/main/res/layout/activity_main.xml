@@ -7,6 +7,16 @@
     android:gravity="center"
     android:background="#FFFFFF">
 
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/resturant_logo"
+        android:contentDescription="@string/app_name"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside" />
+
     <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
