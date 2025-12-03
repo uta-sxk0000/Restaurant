@@ -37,77 +37,98 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
+            android:rowCount="3"
             android:useDefaultMargins="true"
             android:alignmentMode="alignMargins"
             android:padding="8dp">
-
-            <!--reservations button with calendar icon-->
+            <!-- reservations button with calendar icon-->
             <Button
                 android:id="@+id/btnReservations"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:minHeight="0dp"
                 android:layout_columnWeight="1"
                 android:text="@string/label_reservations"
                 android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_today"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                />
 
             <!--queue button with sort icon to suggest ordering-->
             <Button
                 android:id="@+id/btnQueue"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:minHeight="0dp"
                 android:layout_columnWeight="1"
                 android:text="@string/label_queue"
                 android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_sort_by_size"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:includeFontPadding="false"
+                android:gravity="center" />
 
             <!--reservation requests button with a notification-style icon-->
             <Button
                 android:id="@+id/btnReservationRequests"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:minHeight="0dp"
                 android:layout_columnWeight="1"
                 android:text="Reservation Requests"
                 android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_info_details"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                />
 
             <!--settings doubles as admin actions like logout so it uses the manage icon-->
             <Button
                 android:id="@+id/btnSettings"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:minHeight="0dp"
                 android:layout_columnWeight="1"
                 android:text="@string/label_settings"
                 android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_manage"
-                android:drawablePadding="8dp" />
+                android:drawablePadding="8dp"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                />
 
             <!--create restaurant button takes up one column-->
             <Button
                 android:id="@+id/btnCreateRestaurant"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:minHeight="0dp"
                 android:layout_columnWeight="1"
                 android:text="@string/label_create_restaurant"
                 android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_input_add"
                 android:drawablePadding="8dp"
-                android:layout_marginTop="8dp" />
+                android:includeFontPadding="false"
+                android:gravity="center"
+                />
 
             <!--notifications button with a mail icon-->
             <Button
                 android:id="@+id/btnNotifications"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:minHeight="0dp"
                 android:layout_columnWeight="1"
                 android:text="Notifications"
                 android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_dialog_email"
                 android:drawablePadding="8dp"
-                android:layout_marginTop="8dp" />
+                android:includeFontPadding="false"
+                android:gravity="center"
+                />
 
         </GridLayout>
 
