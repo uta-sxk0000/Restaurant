@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">queue</string>
+    <string name="app_name">QuickSeat</string>
     <string name="title_admin_dashboard">Admin Dashboard</string>
     <string name="label_reservations">RESERVATIONS</string>
     <string name="label_queue">QUEUE</string>
