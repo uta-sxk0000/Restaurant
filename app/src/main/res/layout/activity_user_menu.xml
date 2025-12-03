@@ -16,7 +16,7 @@
         android:layout_marginTop="172dp"
         android:text="@string/user_dashboard"
         android:textColor="#333333"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:text="@string/check_in"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@android:drawable/ic_menu_myplaces"
             android:drawablePadding="8dp" />
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:text="@string/make_reservation"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@android:drawable/ic_menu_add"
             android:drawablePadding="8dp" />
 
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:text="@string/view_status"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@android:drawable/ic_menu_info_details"
             android:drawablePadding="8dp" />
 
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:text="@string/view_reservation"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@android:drawable/ic_menu_today"
             android:drawablePadding="8dp" />
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:text="@string/notifications"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@android:drawable/ic_dialog_email"
             android:drawablePadding="8dp" />
 
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:text="@string/user_menu"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:drawableTop="@android:drawable/ic_menu_manage"
             android:drawablePadding="8dp" />
 

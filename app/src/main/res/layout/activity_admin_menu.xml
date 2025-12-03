@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="@string/label_reservations"
+                android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_today"
                 android:drawablePadding="8dp" />
 
@@ -58,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="@string/label_queue"
+                android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_sort_by_size"
                 android:drawablePadding="8dp" />
 
@@ -68,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="Reservation Requests"
+                android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_info_details"
                 android:drawablePadding="8dp" />
 
@@ -78,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="@string/label_settings"
+                android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_menu_manage"
                 android:drawablePadding="8dp" />
 
@@ -88,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="@string/label_create_restaurant"
+                android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_input_add"
                 android:drawablePadding="8dp"
                 android:layout_marginTop="8dp" />
@@ -99,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:text="Notifications"
+                android:textSize="10sp"
                 android:drawableTop="@android:drawable/ic_dialog_email"
                 android:drawablePadding="8dp"
                 android:layout_marginTop="8dp" />
