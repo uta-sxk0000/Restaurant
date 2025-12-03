@@ -50,7 +50,7 @@
 
         <!-- Email -->
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Email"
@@ -64,7 +64,7 @@
 
         <!-- Password -->
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Password"
@@ -145,17 +145,6 @@
             android:fontFamily="sans-serif-light"
             app:cornerRadius="8dp"
             app:backgroundTint="#88a9c3" />
-            
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonGoToReservation"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:text="Go to Reservation (Test)"
-            android:textColor="#FFFFFF"
-            android:fontFamily="sans-serif-light"
-            app:cornerRadius="8dp"
-            app:backgroundTint="#A52A2A" />
 
     </LinearLayout>
 

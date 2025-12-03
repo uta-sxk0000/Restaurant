@@ -3,22 +3,21 @@ package com.example.queue
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MainActivity : AppCompatActivity()
-{
+class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -30,8 +29,8 @@ class MainActivity : AppCompatActivity()
         // UI references
         val emailEditText: EditText = findViewById(R.id.etEmail)
         val passwordEditText: EditText = findViewById(R.id.etPassword)
-        val loginButton: Button = findViewById(R.id.btnLogin)
-        val signUpButton: Button = findViewById(R.id.buttonSignUp)
+        val loginButton: MaterialButton = findViewById(R.id.btnLogin)
+
 
         // Login logic
         loginButton.setOnClickListener {
@@ -45,63 +44,70 @@ class MainActivity : AppCompatActivity()
 
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    if (task.isSuccessful)
-                    {
+                    if (task.isSuccessful) {
 
-                        //get the user id from the database
+                        // get the user id from the database
                         val uid = auth.currentUser?.uid
 
-                        //if the user exist ( is not null)
-                        if (uid != null)
-                        {
+                        // if the user exists (is not null)
+                        if (uid != null) {
 
-                            //get his account type from the database (user/admin)
+                            // get their account type from the database (user/admin)
                             db.collection("users").document(uid).get()
                                 .addOnSuccessListener { document ->
-                                    if(document.exists())
-                                    {
+                                    if (document.exists()) {
                                         val accountType = document.getString("accountType")
 
-                                        //Login succesful
-                                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                                        // Login successful
+                                        Toast.makeText(
+                                            this,
+                                            "Login successful!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
 
-                                        //redirection to the right menu depending on the account type
-
-                                        //if account type is restuarant redirect to admin menu
-                                        if (accountType == "Restaurant")
-                                        {
-                                            val intent = Intent(this, AdminMenuActivity::class.java)
-                                            startActivity(intent)
-                                        }
-                                        //else redirect to user menu
-                                        else
-                                        {
-                                            val intent = Intent(this, MenuActivity::class.java)
-                                            startActivity(intent)
+                                        // redirect to the right menu depending on the account type
+                                        if (accountType == "Restaurant") {
+                                            startActivity(
+                                                Intent(
+                                                    this,
+                                                    AdminMenuActivity::class.java
+                                                )
+                                            )
+                                        } else {
+                                            startActivity(
+                                                Intent(
+                                                    this,
+                                                    MenuActivity::class.java
+                                                )
+                                            )
                                         }
                                         finish()
+                                    } else {
+                                        Toast.makeText(
+                                            this,
+                                            "User data not found",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
-                                    else
-                                    {
-                                        Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show()
-                                    }
-
+                                }
                         }
-
-                    } //else login failed
-                    else
-                    {
-                        Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Login failed: ${task.exception?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         Log.e("Login", "Error: ", task.exception)
                     }
                 }
         }
-
-        //Go to Sign Up screen
-        signUpButton.setOnClickListener{
-            val intent = Intent(this, SingUpActivity::class.java)
-            startActivity(intent)
-        }
     }
+
+    //Had to change the way the button was implemneted in order to fix a bug
+    fun goToSignUp(view: View)
+    {
+        Toast.makeText(this, "Sign Up clicked", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, SingUpActivity::class.java))
     }
 }
+

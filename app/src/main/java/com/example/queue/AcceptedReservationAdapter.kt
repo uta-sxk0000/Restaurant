@@ -44,7 +44,7 @@ class AcceptedReservationAdapter(
                 val db = FirebaseFirestore.getInstance()
                 db.collection("reservations").document(reservation.id)
                     .update("status", "checked-in")
-                    // You can add success/failure listeners here if needed
+
             }
         } else {
             // If the user IS an admin, the button remains hidden (its default state)
